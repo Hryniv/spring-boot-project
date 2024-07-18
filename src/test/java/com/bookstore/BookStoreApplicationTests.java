@@ -18,25 +18,25 @@ import org.springframework.util.Assert;
 class BookStoreApplicationTests {
     @Autowired
     private BookService bookService;
-    private static Book Kobzar;
+    private static Book second;
     private static Book Eneyida;
 
     static {
-        Kobzar = new Book();
-        Kobzar.setAuthor("Taras Shevchenko");
-        Kobzar.setTitle("Kobzar");
-        Kobzar.setPrice(BigDecimal.TEN);
-        Kobzar.setIsbn("778-3-16-148410-0");
-        Kobzar.setDescription("description 1");
-        Kobzar.setCoverImage("images 1");
+        second = new Book();
+        second.setAuthor("Second");
+        second.setTitle("Second");
+        second.setPrice(BigDecimal.TWO);
+        second.setIsbn("222-2-22-222222-2");
+        second.setDescription("description 2");
+        second.setCoverImage("images 2");
 
         Eneyida = new Book();
         Eneyida.setAuthor("Kotlyarevsky");
         Eneyida.setTitle("Eneyida");
         Eneyida.setPrice(BigDecimal.TEN);
         Eneyida.setIsbn("777-7-77-777777-7");
-        Eneyida.setDescription("description 2");
-        Eneyida.setCoverImage("images 2");
+        Eneyida.setDescription("description 3");
+        Eneyida.setCoverImage("images 3");
     }
 
     @Test
@@ -55,13 +55,13 @@ class BookStoreApplicationTests {
     public void findAll_Ok() {
         List<Book> actualBooks = bookService.findAll();
         Assert.notNull(actualBooks, "Couldn't be null");
-        Assert.isTrue(2 == actualBooks.size(),
-                "Expected size 2 but actual: " + actualBooks.size());
+        Assert.isTrue(3 == actualBooks.size(),
+                "Expected size 3 but actual: " + actualBooks.size());
     }
 
     private void insertBooks() {
-        verifyCreateBookWorks(Kobzar, 1L);
-        verifyCreateBookWorks(Eneyida, 2L);
+        verifyCreateBookWorks(second, 2L);
+        verifyCreateBookWorks(Eneyida, 3L);
     }
 
     private void verifyCreateBookWorks(Book book, Long expectedId) {
