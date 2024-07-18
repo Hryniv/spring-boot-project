@@ -19,16 +19,16 @@ public class BookStoreApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-//            Book book = new Book();
-//            book.setAuthor("Taras Shevchenko");
-//            book.setPrice(BigDecimal.ONE);
-//            book.setIsbn("778-3-16-148410-0");
-//            book.setDescription("description");
-//            book.setTitle("Kobzar");
-//            book.setCoverImage("images");
-//
-//            bookService.save(book);
-//            bookService.findAll().forEach(System.out::println);
+            //Book book = new Book();
+            //book.setAuthor("Taras Shevchenko");
+            //book.setPrice(BigDecimal.ONE);
+            //book.setIsbn("778-3-16-148410-0");
+            //book.setDescription("description");
+            //book.setTitle("Kobzar");
+            //book.setCoverImage("images");
+
+            //bookService.save(book);
+            //bookService.findAll().forEach(System.out::println);
         };
     }
 }
