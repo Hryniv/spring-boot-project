@@ -4,6 +4,7 @@ import com.bookstore.exception.DataProcessingException;
 import com.bookstore.model.Book;
 import com.bookstore.repository.BookRepository;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -47,6 +48,15 @@ public class BookRepositoryImpl implements BookRepository {
             return session.createQuery("Select b From Book b", Book.class).getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Couldn't get list of books", e);
+        }
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(Book.class, id));
+        } catch (Exception e) {
+            throw new DataProcessingException("Couldn't find user with id " + id, e);
         }
     }
 }
