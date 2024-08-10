@@ -3,6 +3,7 @@ package com.bookstore.service.impl;
 import com.bookstore.dto.BookDto;
 import com.bookstore.dto.CreateBookRequestDto;
 import com.bookstore.mapper.BookMapper;
+import com.bookstore.model.Book;
 import com.bookstore.repository.BookRepository;
 import com.bookstore.service.BookService;
 import jakarta.persistence.EntityNotFoundException;
@@ -30,8 +31,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto findById(Long id) {
-        return bookMapper.toDto(bookRepository.findById(id).orElseThrow(() ->
-                new EntityNotFoundException("Can't find book by id " + id)
-        ));
+        Book book = bookRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Can't find book by id " + id));
+        return bookMapper.toDto(book);
     }
 }
