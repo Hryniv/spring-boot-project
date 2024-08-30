@@ -29,9 +29,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> findAll() {
-        return bookRepository.findAll().stream()
-                .map(bookMapper::toDto)
-                .toList();
+        return bookMapper.toListDto(bookRepository.findAll());
     }
 
     @Override
@@ -53,10 +51,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDto> search(BookSearchParametersDto searchParameters) {
         Specification<Book> spec = bookSpecificationBuilder.build(searchParameters);
-        return bookRepository.findAll(spec)
-                .stream()
-                .map(bookMapper::toDto)
-                .toList();
+        return bookMapper.toListDto(bookRepository.findAll(spec));
     }
 
     @Override
