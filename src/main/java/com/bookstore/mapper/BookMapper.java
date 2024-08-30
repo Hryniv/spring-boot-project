@@ -4,10 +4,9 @@ import com.bookstore.config.MapperConfig;
 import com.bookstore.dto.BookDto;
 import com.bookstore.dto.CreateBookRequestDto;
 import com.bookstore.model.Book;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-
-import java.util.List;
 
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
