@@ -11,6 +11,7 @@ import com.bookstore.service.BookService;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> findAll() {
-        return bookMapper.toListDto(bookRepository.findAll());
+    public List<BookDto> findAll(Pageable pageable) {
+        return bookMapper.pageToListDto(bookRepository.findAll(pageable));
     }
 
     @Override
@@ -49,9 +50,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> search(BookSearchParametersDto searchParameters) {
+    public List<BookDto> search(BookSearchParametersDto searchParameters,
+                                Pageable pageable) {
         Specification<Book> spec = bookSpecificationBuilder.build(searchParameters);
-        return bookMapper.toListDto(bookRepository.findAll(spec));
+        return bookMapper.pageToListDto(bookRepository.findAll(spec, pageable));
     }
 
     @Override
